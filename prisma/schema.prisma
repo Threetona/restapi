@@ -42,3 +42,13 @@ model Role {
   updatedAt DateTime @updatedAt
   User      User[]
 }
+
+model Menu {
+  id        Int       @id @default(autoincrement())
+  name      String?   @unique
+  icon      String?
+  ordering  Int
+  active    Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
