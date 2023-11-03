@@ -11,15 +11,35 @@ async function main() {
     const passwordNanda = await bcrypt.hash('password-nanda', roundsOfHashing);
     const passwordKiki = await bcrypt.hash('password-kiki', roundsOfHashing);
 
+    const role1 = await prisma.role.upsert({
+        where: { id: 1 },
+        update: {},
+        create: {
+            name: 'Administrator',
+            inactive: true,
+        },
+    });
+
+    const role2 = await prisma.role.upsert({
+        where: { id: 2 },
+        update: {},
+        create: {
+            name: 'superuser',
+            inactive: true,
+        },
+    });
+
     const user1 = await prisma.user.upsert({
         where: { email: 'nanda@tritona.com' },
         update: {
             password: passwordNanda,
+            roleId: role1.id,
         },
         create: {
             email: 'nanda@tritona.com',
             name: 'Nanda Tritona',
             password: passwordNanda,
+            roleId: role1.id,
         },
     });
 
@@ -27,11 +47,13 @@ async function main() {
         where: { email: 'kiki@ruheni.com' },
         update: {
             password: passwordKiki,
+            roleId: role2.id,
         },
         create: {
             email: 'kiki@ruheni.com',
             name: 'Kiki Ruheni',
             password: passwordKiki,
+            roleId: role2.id,
         },
     });
 
@@ -78,7 +100,7 @@ async function main() {
         },
     });
 
-    console.log({ user1, user2, post1, post2, post3 });
+    console.log({ role1, role2, user1, user2, post1, post2, post3 });
 }
 
 // execute the main function
