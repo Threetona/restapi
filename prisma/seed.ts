@@ -103,7 +103,7 @@ async function main() {
     });
 
     // create three dummy main menu
-    const meni1 = await prisma.menu.upsert({
+    const menu1 = await prisma.menu.upsert({
         where: { name: 'Dashboard' },
         update: {},
         create: {
@@ -113,8 +113,28 @@ async function main() {
             active: false,
         },
     });
+    const menu2 = await prisma.menu.upsert({
+        where: { name: 'Master' },
+        update: {},
+        create: {
+            name: 'Master',
+            icon: 'svg2',
+            ordering: 1,
+            active: false,
+        },
+    });
 
-    console.log({ role1, role2, user1, user2, post1, post2, post3, meni1 });
+    console.log({
+        role1,
+        role2,
+        user1,
+        user2,
+        post1,
+        post2,
+        post3,
+        menu1,
+        menu2,
+    });
 }
 
 // execute the main function

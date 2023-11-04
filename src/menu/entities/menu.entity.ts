@@ -1,1 +1,24 @@
-export class Menu {}
+import { ApiProperty } from '@nestjs/swagger';
+import { Menu } from '@prisma/client';
+export class MenuEntity implements Menu {
+    @ApiProperty()
+    id: number;
+
+    @ApiProperty()
+    name: string;
+
+    @ApiProperty()
+    icon: string;
+
+    @ApiProperty()
+    ordering: number;
+
+    @ApiProperty()
+    active: boolean;
+
+    @ApiProperty()
+    createdAt: Date;
+
+    @ApiProperty()
+    updatedAt: Date;
+}
