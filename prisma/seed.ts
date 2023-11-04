@@ -11,6 +11,7 @@ async function main() {
     const passwordNanda = await bcrypt.hash('password-nanda', roundsOfHashing);
     const passwordKiki = await bcrypt.hash('password-kiki', roundsOfHashing);
 
+    // create three dummy role
     const role1 = await prisma.role.upsert({
         where: { id: 1 },
         update: {},
@@ -29,6 +30,7 @@ async function main() {
         },
     });
 
+    // create three dummy user
     const user1 = await prisma.user.upsert({
         where: { email: 'nanda@tritona.com' },
         update: {
@@ -100,7 +102,19 @@ async function main() {
         },
     });
 
-    console.log({ role1, role2, user1, user2, post1, post2, post3 });
+    // create three dummy main menu
+    const meni1 = await prisma.menu.upsert({
+        where: { name: 'Dashboard' },
+        update: {},
+        create: {
+            name: 'Dashboard',
+            icon: 'svg1',
+            ordering: 1,
+            active: false,
+        },
+    });
+
+    console.log({ role1, role2, user1, user2, post1, post2, post3, meni1 });
 }
 
 // execute the main function
