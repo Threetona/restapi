@@ -12,14 +12,14 @@ export class SubmenuService {
 
     findAll() {
         return this.prisma.subMenu.findMany({
-            include: { subMenus2: true },
+            include: { subMenus2: { include: { subMenus3: true } } },
         });
     }
 
     findOne(id: number) {
         return this.prisma.subMenu.findUnique({
             where: { id },
-            include: { subMenus2: true },
+            include: { subMenus2: { include: { subMenus3: true } } },
         });
     }
 
