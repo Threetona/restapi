@@ -41,14 +41,79 @@ model Role {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   User      User[]
+  // Relasi dengan Permission
+  permissions Permission[]
 }
+
+
 
 model Menu {
   id        Int       @id @default(autoincrement())
   name      String?   @unique
   icon      String?
   ordering  Int
-  active    Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  active    Boolean   @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relasi dengan SubMenu
+  subMenus  SubMenu[]
+  // Relasi dengan Permission
+  permissions Permission[]
+}
+
+model SubMenu {
+  id        Int       @id @default(autoincrement())
+  name      String?   @unique
+  icon      String?
+  ordering  Int
+  active    Boolean   @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  menuId    Int        // Menyimpan ID dari menu yang dihubungkan
+  menu      Menu       @relation(fields: [menuId], references: [id])
+
+  // Relasi dengan SubMenu2
+  
+  subMenus2 SubMenu2[]
+}
+
+model SubMenu2 {
+  id        Int       @id @default(autoincrement())
+  name      String?   @unique
+  icon      String?
+  ordering  Int
+  active    Boolean   @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  subMenuId Int        // Menyimpan ID dari submenu yang dihubungkan
+  subMenu   SubMenu    @relation(fields: [subMenuId], references: [id])
+
+  // Relasi dengan SubMenu3
+  subMenus3 SubMenu3[]
+}
+
+model SubMenu3 {
+  id        Int       @id @default(autoincrement())
+  name      String?   @unique
+  icon      String?
+  ordering  Int
+  active    Boolean   @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  subMenu2Id Int       // Menyimpan ID dari submenu2 yang dihubungkan
+  subMenu2  SubMenu2   @relation(fields: [subMenu2Id], references: [id])
+}
+
+
+model Permission {
+  id        Int       @id @default(autoincrement())
+  roleId    Int
+  menuId    Int
+
+  // Relasi dengan Role
+  role      Role       @relation(fields: [roleId], references: [id])
+
+  // Relasi dengan Menu
+  menu      Menu       @relation(fields: [menuId], references: [id])
 }
