@@ -29,14 +29,10 @@ export class Submenu3Controller {
     @Post()
     @ApiCreatedResponse({ type: SubMenu3Entity })
     async create(@Body() createSubmenu3Dto: CreateSubmenu3Dto) {
-        // return 'ok';
         return new SubMenu3Entity(
             await this.submenu3Service.create(createSubmenu3Dto),
         );
     }
-    // create(@Body() createSubmenu3Dto: CreateSubmenu3Dto) {
-    //     return this.submenu3Service.create(createSubmenu3Dto);
-    // }
 
     @Get()
     @UseGuards(JwtAuthGuard)
