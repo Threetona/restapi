@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { SubMenu } from '@prisma/client';
+import { SubMenu2 } from '@prisma/client';
 
-export class SubMenuEntity implements SubMenu {
-    constructor(partial: Partial<SubMenuEntity>) {
+export class Submenu2Entity implements SubMenu2 {
+    constructor(partial: Partial<Submenu2Entity>) {
         Object.assign(this, partial);
     }
 
@@ -27,6 +27,6 @@ export class SubMenuEntity implements SubMenu {
     @ApiProperty()
     updatedAt: Date;
 
-    @ApiProperty({ required: false, nullable: true })
-    menuId: number | null;
+    @ApiProperty()
+    subMenuId: number;
 }

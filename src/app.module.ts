@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
+// import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 // import { ArticlesModule } from './articles/articles.module';
 import { UsersModule } from './users/users.module';
@@ -8,7 +8,11 @@ import { RoleModule } from './role/role.module';
 import { MenuModule } from './menu/menu.module';
 import { SubmenuModule } from './submenu/submenu.module';
 import { Submenu3Module } from './submenu3/submenu3.module';
+<<<<<<< HEAD
 import { PermissionModule } from './permission/permission.module';
+=======
+import { Submenu2Module } from './submenu2/submenu2.module';
+>>>>>>> 345297577d8dc5f5ba52abd0d4be413d84b7d7ab
 
 @Module({
     imports: [
@@ -18,10 +22,11 @@ import { PermissionModule } from './permission/permission.module';
         RoleModule,
         MenuModule,
         SubmenuModule,
+        Submenu2Module,
         Submenu3Module,
         PermissionModule,
     ],
     controllers: [],
-    providers: [AppService],
+    providers: [],
 })
 export class AppModule {}
