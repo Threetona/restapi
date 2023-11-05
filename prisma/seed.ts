@@ -124,6 +124,51 @@ async function main() {
         },
     });
 
+    // create three dummy sub menu
+    const submenu1 = await prisma.subMenu.upsert({
+        where: { name: 'Submenu' },
+        update: {
+            menuId: menu2.id,
+        },
+        create: {
+            name: 'Submenu',
+            icon: 'svg2',
+            ordering: 1,
+            active: false,
+            menuId: menu2.id,
+        },
+    });
+
+    // create three dummy sub menu 2
+    const submenu2_1 = await prisma.subMenu2.upsert({
+        where: { name: 'Submenu 2' },
+        update: {
+            subMenuId: submenu1.id,
+        },
+        create: {
+            name: 'Submenu',
+            icon: 'svg2',
+            ordering: 1,
+            active: false,
+            subMenuId: submenu1.id,
+        },
+    });
+
+    // create three dummy sub menu 3
+    const submenu3_1 = await prisma.subMenu3.upsert({
+        where: { name: 'Submenu 3 coba' },
+        update: {
+            subMenu2Id: submenu2_1.id,
+        },
+        create: {
+            name: 'Submenu',
+            icon: 'svg2',
+            ordering: 1,
+            active: false,
+            subMenu2Id: submenu2_1.id,
+        },
+    });
+
     console.log({
         role1,
         role2,
@@ -134,6 +179,9 @@ async function main() {
         post3,
         menu1,
         menu2,
+        submenu1,
+        submenu2_1,
+        submenu3_1,
     });
 }
 
