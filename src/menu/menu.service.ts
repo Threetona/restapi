@@ -7,22 +7,50 @@ import { PrismaService } from '../prisma/prisma.service';
 export class MenuService {
     constructor(private prisma: PrismaService) {}
     create(createMenuDto: CreateMenuDto) {
-        return 'This action adds a new menu';
+        return this.prisma.menu.create({ data: createMenuDto });
     }
 
     findAll() {
-        return `This action returns all menu`;
+        return this.prisma.menu.findMany({
+            include: {
+                subMenus: {
+                    include: {
+                        subMenus2: {
+                            include: {
+                                subMenus3: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
     }
 
     findOne(id: number) {
-        return `This action returns a #${id} menu`;
+        return this.prisma.menu.findUnique({
+            where: { id },
+            include: {
+                subMenus: {
+                    include: {
+                        subMenus2: {
+                            include: {
+                                subMenus3: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
     }
 
-    update(id: number, updateMenuDto: UpdateMenuDto) {
-        return `This action updates a #${id} menu`;
+    async update(id: number, updateMenuDto: UpdateMenuDto) {
+        return await this.prisma.menu.update({
+            where: { id },
+            data: updateMenuDto,
+        });
     }
 
     remove(id: number) {
-        return `This action removes a #${id} menu`;
+        return this.prisma.menu.delete({ where: { id } });
     }
 }

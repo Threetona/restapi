@@ -33,8 +33,8 @@ export class SubmenuController {
     }
 
     @Get()
-    @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth()
+    // @UseGuards(JwtAuthGuard)
+    // @ApiBearerAuth()
     @ApiOkResponse({ type: [SubMenuEntity] })
     findAll() {
         return this.submenuService.findAll();

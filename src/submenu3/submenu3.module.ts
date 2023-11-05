@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Submenu3Service } from './submenu3.service';
 import { Submenu3Controller } from './submenu3.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
     controllers: [Submenu3Controller],
