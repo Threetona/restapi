@@ -8,6 +8,7 @@ import { RoleModule } from './role/role.module';
 import { MenuModule } from './menu/menu.module';
 import { SubmenuModule } from './submenu/submenu.module';
 import { Submenu3Module } from './submenu3/submenu3.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { Submenu3Module } from './submenu3/submenu3.module';
         MenuModule,
         SubmenuModule,
         Submenu3Module,
+        PermissionModule,
     ],
     controllers: [],
     providers: [AppService],

@@ -169,6 +169,18 @@ async function main() {
         },
     });
 
+    // create three dummy sub menu 3
+    const permission1 = await prisma.permission.upsert({
+        where: { id: 1 },
+        update: {
+            roleId: role1.id,
+        },
+        create: {
+            roleId: 1,
+            menuId: 1,
+        },
+    });
+
     console.log({
         role1,
         role2,
@@ -182,6 +194,7 @@ async function main() {
         submenu1,
         submenu2_1,
         submenu3_1,
+        permission1,
     });
 }
 
