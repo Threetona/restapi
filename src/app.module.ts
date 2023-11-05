@@ -6,9 +6,19 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { RoleModule } from './role/role.module';
 import { MenuModule } from './menu/menu.module';
+import { SubmenuModule } from './submenu/submenu.module';
+import { Submenu3Module } from './submenu3/submenu3.module';
 
 @Module({
-    imports: [PrismaModule, AuthModule, UsersModule, RoleModule, MenuModule],
+    imports: [
+        PrismaModule,
+        AuthModule,
+        UsersModule,
+        RoleModule,
+        MenuModule,
+        SubmenuModule,
+        Submenu3Module,
+    ],
     controllers: [],
     providers: [AppService],
 })
