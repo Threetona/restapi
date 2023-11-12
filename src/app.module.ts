@@ -10,10 +10,12 @@ import { SubmenuModule } from './submenu/submenu.module';
 import { Submenu3Module } from './submenu3/submenu3.module';
 import { PermissionModule } from './permission/permission.module';
 import { Submenu2Module } from './submenu2/submenu2.module';
+import { SessionModule } from './session/session.module';
 
 @Module({
     imports: [
         PrismaModule,
+        SessionModule,
         AuthModule,
         UsersModule,
         RoleModule,
