@@ -32,6 +32,7 @@ model User {
   articles  Article[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  sessions   Session[]
 }
 
 model Role {
@@ -41,8 +42,8 @@ model Role {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   User      User[]
-  // Relasi dengan Permission
   permissions Permission[]
+  sessions   Session[]
 }
 
 
@@ -116,4 +117,18 @@ model Permission {
 
   // Relasi dengan Menu
   menu      Menu       @relation(fields: [menuId], references: [id])
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  name      String?
+  email     String?
+  password  String
+  roleId    Int?
+  role      Role?    @relation(fields: [roleId], references: [id])
+  online    Boolean   @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
